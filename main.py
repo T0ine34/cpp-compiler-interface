@@ -1,6 +1,6 @@
-from distutils import extension
+
 import tkinter as tk
-from tkinter import Variable, ttk
+from tkinter import ttk
 from tkinter import filedialog
 import os
 import sys
@@ -40,7 +40,9 @@ class Parameters:
         if name in self.params.keys():
             return str(self.params[name])
         else:
+            print('"'+name+'" do not exist in '+CONFIG_PATH+' : creating it and set it to ""')
             self.params[name] = ''
+            self.save()
             return str()
 
     def __getattibutes__(self, name):
@@ -176,7 +178,7 @@ class Widgets:
             self.button.grid(row = 0, column = 1)
 
         def open_window(self, c=None):
-            value = filedialog.askopenfilename(title='Choose files to compile', multiple=True, filetypes= (('C++', '*.cpp'),('O', '*.o')))
+            value = filedialog.askopenfilename(title='Choose files to compile', multiple=True, filetypes= (('C++', '*.cpp'),('O', '*.o')), initialdir=self.master.param.get('default_input'))
             if value is not None:
                 self.paths = value
                 self.value.set(value)
@@ -198,7 +200,7 @@ class Widgets:
             self.button.grid(row = 0, column = 1)
 
         def open_window(self, c=None):
-            value = filedialog.asksaveasfilename(title='Choose location of compiled file', filetypes= self.ftypes)
+            value = filedialog.asksaveasfilename(title='Choose location of compiled file', filetypes= self.ftypes, initialdir=self.master.param.get('default_output'))
             if value is not None:
                 self.value.set(value)
 

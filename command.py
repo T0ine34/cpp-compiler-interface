@@ -25,8 +25,8 @@ def compile(input_path : list , output_path : str, operation : str = 'Executable
             names.append(temp_path+'\\'+name+extension)
 
         for cmd in cmds:
-            print(cmd)
             run(cmd)
+        
         
         if operation == 'Executable (.exe)':
             cmd = 'g++'
@@ -36,6 +36,7 @@ def compile(input_path : list , output_path : str, operation : str = 'Executable
                 cmd += ' -Wall'
                 cmd += ' -o "'+output_path+'"'
             run(cmd)      
+        print('Files compiled !')
 
 
 
@@ -49,6 +50,7 @@ def compile(input_path : list , output_path : str, operation : str = 'Executable
         cmd += ' -o '+output_path
         print(cmd)
         run(cmd)
+        print('File compiled !')
              
 
 if __name__ == "__main__":
