@@ -214,13 +214,15 @@ class Widgets:
                 self.ftypes = [('Assembly', '*.s'),("All Files", "*.*")] 
             elif extension == 'Compiled file (.o)':
                 self.ftypes = [('Compiled File','*.o'),("All Files", "*.*")] 
+            elif extension == 'Shared library (.so)':
+                self.ftypes = [('Shared library','*.so'),("All Files", "*.*")] 
             
 
     class Output_Type(tk.Frame):
         def __init__(self, master, cmd):
             self.cmd = cmd
             tk.Frame.__init__(self,master)
-            self.box = ttk.Combobox(self, state='readonly', values=('Executable (.exe)', 'Assembly (.s)', 'Compiled file (.o)'))
+            self.box = ttk.Combobox(self, state='readonly', values=('Executable (.exe)', 'Assembly (.s)', 'Compiled file (.o)', 'Shared library (.so)'))
             self.box.current(0)
             self.command()
             self.box.bind('<<ComboboxSelected>>', self.command)

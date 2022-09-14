@@ -3,3 +3,4 @@
 *.pyc
 test.py
 .vscode/settings.json
+*.exe
